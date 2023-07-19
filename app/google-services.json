@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611665795410",
+    "project_id": "whisper-926d6",
+    "storage_bucket": "whisper-926d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611665795410:android:d6153e2fd32ad249ae428b",
+        "android_client_info": {
+          "package_name": "com.firstcode.chatapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611665795410-q3r6m0rusdog52rgjm4nncj1rl90p4de.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeWiJX5xBfS4njAFAYX79FHBcd-WCHxy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611665795410-q3r6m0rusdog52rgjm4nncj1rl90p4de.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

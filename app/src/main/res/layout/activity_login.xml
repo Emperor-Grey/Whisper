@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image2"
+    tools:context=".Login_Activity">
+
+    <TextView
+        android:id="@+id/Login_Welcome_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:text="Welcome,"
+        android:textSize="37sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Back_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/Login_Welcome_textView"
+        app:layout_constraintTop_toBottomOf="@+id/Login_Welcome_textView" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Login_Email_Edittext"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="27dp"
+        android:textColorHint="#A1000000"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Example@gmail.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Login_Password_Edittext"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="27dp"
+        android:textColorHint="#A1000000"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="27dp"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_Email_Edittext" />
+
+    <TextView
+        android:id="@+id/ForgotPassword_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="111dp"
+        android:text="forgot password"
+        android:textColor="#03A9F4"
+        app:layout_constraintBottom_toTopOf="@+id/lottieAnimationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Login_SignIn_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="26dp"
+        android:backgroundTint="#569C27B0"
+        android:text="Sign In"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_Password_Edittext" />
+
+    <Button
+        android:id="@+id/Login_Register_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="210dp"
+        android:backgroundTint="#72673AB7"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_Password_Edittext" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ForgotPassword_TextView"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/chat_robot" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

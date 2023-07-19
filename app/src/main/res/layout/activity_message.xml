@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    tools:context=".Message_Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="#FA65CC5A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/Toolbar_User_imageView"
+            android:layout_width="55dp"
+            android:layout_margin="5dp"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="User Image" />
+
+        <TextView
+            android:id="@+id/Toolbar_user_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:textAlignment="center"
+            android:textSize="19sp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Layout for Displaying things using recycler view -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Message_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Layout for the sending things -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Message_Text_Send"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginEnd="-1dp"
+                android:layout_toStartOf="@+id/Message_Button_Send"
+                android:hint="type a Message"
+                android:inputType="textMultiLine" />
+
+            <ImageButton
+                android:id="@+id/Message_Button_Send"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="3dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/send_svg"
+                android:clickable="true"
+                android:contentDescription="Send"
+                android:focusable="true" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image1"
+    tools:context=".Registration_Activity">
+
+    <TextView
+        android:id="@+id/Welcome_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="301dp"
+        android:layout_marginBottom="235dp"
+        android:text="Welcome"
+        android:textColor="@color/black"
+        android:textSize="45sp"
+        android:textStyle="italic|bold|normal"
+        app:layout_constraintBottom_toTopOf="@+id/Register_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/UserName_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="297dp"
+        android:drawableStart="@drawable/person"
+        android:drawablePadding="8dp"
+        android:textColor="@color/black"
+        android:hint="Enter Username"
+        android:textColorHint="#A1000000"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Email_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="27dp"
+        android:textColorHint="#A1000000"
+        android:drawableStart="@drawable/email"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        android:hint="Example@gmail.com"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserName_EditText" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Password_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="27dp"
+        android:textColorHint="#A1000000"
+        android:drawableStart="@drawable/lock"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email_EditText" />
+
+    <Button
+        android:id="@+id/Register_Button"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#FD3393DE"
+        android:text="Register"
+        android:textSize="22sp"
+        android:textStyle="italic|normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome_TextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
