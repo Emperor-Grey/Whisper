@@ -4,15 +4,17 @@ public class Chat {
     private String sender;
     private String receiver;
     private String message;
+    private Boolean isSeen;
 
     public Chat() {
         //Required for Firebase
     }
 
-    public Chat(String sender, String receiver, String message) {
+    public Chat(String sender, String receiver, String message, Boolean isSeen) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
+        this.isSeen = isSeen;
     }
 
     public String getSender() {
@@ -38,4 +40,12 @@ public class Chat {
     public void setMessage(String message) {
         this.message = message;
     }
+    public Boolean getSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(Boolean seen) {
+        isSeen = seen;
+    }
+
 }

@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
@@ -116,5 +117,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void CheckStatus(String status){
+        databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers")
+                .child(firebaseUser.getUid());
 
+        HashMap<String , Object> hashMap = new HashMap<>();
+        hashMap.put("status",status);
+
+        databaseReference.updateChildren(hashMap);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CheckStatus("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CheckStatus("Offline");
+    }
 }
