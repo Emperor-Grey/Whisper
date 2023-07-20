@@ -42,7 +42,7 @@ public class Message_Activity extends AppCompatActivity {
     //firebase
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-    ValueEventListener seenListener;
+   /* ValueEventListener seenListener;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class Message_Activity extends AppCompatActivity {
                 messageText.setText("");
             }
         });
-        SeenMessage(userId);
+        // SeenMessage(userId);
     }
     private void SendMessage(String sender, String receiver, String message) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -124,7 +124,7 @@ public class Message_Activity extends AppCompatActivity {
         hashMap.put("sender",sender);
         hashMap.put("receiver",receiver);
         hashMap.put("message",message);
-        hashMap.put("isseen",false);
+        /*hashMap.put("isseen",false);*/
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -176,7 +176,7 @@ public class Message_Activity extends AppCompatActivity {
         });
 
     }
-    public void SeenMessage(final String UserId){
+   /* public void SeenMessage(final String UserId){
         databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers");
         seenListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -198,7 +198,9 @@ public class Message_Activity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
+
+/*
     public void CheckStatus(String status){
         databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers")
                 .child(firebaseUser.getUid());
@@ -208,8 +210,9 @@ public class Message_Activity extends AppCompatActivity {
 
         databaseReference.updateChildren(hashMap);
     }
+*/
 
-    @Override
+/*    @Override
     protected void onResume() {
         super.onResume();
         CheckStatus("online");
@@ -220,5 +223,5 @@ public class Message_Activity extends AppCompatActivity {
         super.onPause();
         databaseReference.removeEventListener(seenListener);
         CheckStatus("Offline");
-    }
+    }*/
 }

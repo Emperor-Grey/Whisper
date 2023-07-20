@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void CheckStatus(String status){
+/*    public void CheckStatus(String status){
         databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers")
                 .child(firebaseUser.getUid());
 
@@ -137,5 +137,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         CheckStatus("Offline");
-    }
+    }*/
 }

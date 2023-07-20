@@ -51,12 +51,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         final Chat chat = chats.get(position);
 
         holder.message.setText(chat.getMessage());
-        if(imageUrl.equals("default")){
+        if (imageUrl.equals("default")) {
             holder.profileImage.setImageResource(R.mipmap.ic_launcher_round);
-        }else {
+        } else {
             Glide.with(context).load(imageUrl).into(holder.profileImage);
         }
 
+/*
         if(position == chats.size() - 1){
             String isSeen;
             if(chat.getSeen()){
@@ -68,6 +69,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }else {
             holder.messageSeen.setVisibility(View.GONE);
         }
+*/
     }
 
     @Override
@@ -90,7 +92,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView message;
         private final ImageView profileImage;
-        private TextView messageSeen;
+        private final TextView messageSeen;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
