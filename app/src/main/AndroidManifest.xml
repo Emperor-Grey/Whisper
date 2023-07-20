@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -15,9 +20,12 @@
         android:theme="@style/Theme.ChatApplication"
         tools:targetApi="31">
         <activity
-            android:name=".Message_Activity"
-            android:theme="@style/Base.Theme.ChatApplication.NoActionBar"
+            android:name=".Profile_Activity"
             android:exported="false" />
+        <activity
+            android:name=".Message_Activity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.ChatApplication.NoActionBar" />
         <activity
             android:name=".Login_Activity"
             android:exported="true">

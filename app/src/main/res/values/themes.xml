@@ -9,5 +9,11 @@
     <style name="Base.Theme.ChatApplication.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
     <item name="colorPrimary">#FA65CC5A</item>
     </style>
+    <style name="nightModeSwitch" parent="Theme.Material3.Light">
+        <item name="materialSwitchStyle">@color/Green</item>
+        <item name="colorControlActivated">@color/Green</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
+    </style>
     <style name="Theme.ChatApplication" parent="Base.Theme.ChatApplication" />
 </resources>

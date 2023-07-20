@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.firstcode.chatapplication.Model.Users;
@@ -71,17 +72,16 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.my_menu,menu);
         return true;
     }
-    //adding click functionality to the menu item
+    // Adding click functionality to the menu item
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if ((item.getItemId()) == R.id.button_Logout) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this, Login_Activity.class));
-            finish();
+        if (item.getItemId() == R.id.Setting_menu) {
+
             return true;
         }
         return false;
     }
+
 
     //Class For the ViewPages Adapter
     static class ViewPagerAdapter extends FragmentPagerAdapter{
