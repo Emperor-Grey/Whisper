@@ -31,9 +31,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Message_Activity extends AppCompatActivity {
     private TextView userName;
-    private ImageView userImage;
+    private CircleImageView userImage;
     private MessageAdapter messageAdapter;
     private RecyclerView messageRecyclerView;
     private List<Chat> chatsList;

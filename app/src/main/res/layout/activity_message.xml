@@ -24,10 +24,11 @@
         app:layout_constraintTop_toTopOf="parent"
         android:focusable="true">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/Toolbar_User_imageView"
             android:layout_width="55dp"
             android:layout_margin="5dp"
+            android:scaleType="centerCrop"
             android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/avatars"
             android:contentDescription="User Image" />

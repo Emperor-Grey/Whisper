@@ -44,10 +44,12 @@ dependencies {
     //Analytics
     implementation 'com.google.firebase:firebase-analytics'
     //Authentication
-    implementation 'com.google.firebase:firebase-auth:22.0.0'
+    implementation 'com.google.firebase:firebase-auth:22.1.0'
     // Glide Library
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    //Circular Image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     // For Real time database
     implementation 'com.google.firebase:firebase-database:20.2.2'
     // For Firebase Storage

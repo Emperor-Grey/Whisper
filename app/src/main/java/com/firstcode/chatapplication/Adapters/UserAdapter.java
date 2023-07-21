@@ -15,8 +15,11 @@ import com.bumptech.glide.Glide;
 import com.firstcode.chatapplication.Message_Activity;
 import com.firstcode.chatapplication.Model.Users;
 import com.firstcode.chatapplication.R;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder> {
     private final Context context;
@@ -64,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
 
     public static class userViewHolder extends RecyclerView.ViewHolder{
         private final TextView userName;
-        private final ImageView userImage;
+        private final CircleImageView userImage;
 
         public userViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -15,5 +15,8 @@
         <item name="colorSwitchThumbNormal">@color/white</item>
         <item name="android:colorForeground">#99FFFFFF</item>
     </style>
+    <style name="Base.Theme.ChatApplication.Settings.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#1B023B</item>
+    </style>
     <style name="Theme.ChatApplication" parent="Base.Theme.ChatApplication" />
 </resources>

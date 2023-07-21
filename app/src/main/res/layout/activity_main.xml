@@ -8,6 +8,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FA65CC5A"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/Tab_Layout"
         android:layout_width="match_parent"
