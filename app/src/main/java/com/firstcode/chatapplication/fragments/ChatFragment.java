@@ -92,7 +92,7 @@ public class ChatFragment extends Fragment {
                     for (ChatList chatList : chatLists){
                         assert users != null;
                         if(users.getId().equals(chatList.getId())){
-                            usersList.add(users);                    // Note Important
+                            usersList.add(users);  // Note Important
                         }
                     }
                 }

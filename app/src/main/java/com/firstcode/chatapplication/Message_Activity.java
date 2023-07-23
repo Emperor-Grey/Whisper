@@ -35,11 +35,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Message_Activity extends AppCompatActivity {
     private TextView userName;
     private CircleImageView userImage;
+
     private MessageAdapter messageAdapter;
     private RecyclerView messageRecyclerView;
     private List<Chat> chatsList;
+
     private TextInputEditText messageText;
     private String userId;
+
     //firebase
     private FirebaseUser firebaseUser;
     private DatabaseReference databaseReference;
@@ -135,7 +138,7 @@ public class Message_Activity extends AppCompatActivity {
                     if(chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ){
 
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("isSeen", false);
+                        hashMap.put("isSeen", true);
                         snapshot.getRef().updateChildren(hashMap);
                     }
                 }
@@ -186,6 +189,7 @@ public class Message_Activity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 chatsList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -232,12 +236,5 @@ public class Message_Activity extends AppCompatActivity {
             databaseReference.removeEventListener(SeenListener);
         }
         CheckStatus("Offline");
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        CheckStatus("Online");
     }
 }

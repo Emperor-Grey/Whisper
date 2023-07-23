@@ -63,7 +63,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
            }else {
                 holder.messageSeen.setText("Delivered");
             }
-        } else {
+        }
+        else {
             holder.messageSeen.setVisibility(View.GONE);
         }
     }

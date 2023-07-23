@@ -125,4 +125,24 @@ public class MainActivity extends AppCompatActivity {
             return titles.get(position);
         }
     }
+    private void CheckStatus(String status){
+        databaseReference  = FirebaseDatabase.getInstance().getReference("MyUsers")
+                .child(firebaseUser.getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+        databaseReference.updateChildren(hashMap);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CheckStatus("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CheckStatus("Offline");
+    }
 }

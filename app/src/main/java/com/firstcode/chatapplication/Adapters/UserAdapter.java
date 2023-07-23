@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder> {
     private final Context context;
     private final List<Users> usersList;
-    private Boolean isChat;
+    private final Boolean isChat;
 
     //Constructor
 
@@ -69,9 +69,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
                 holder.status.setText("Offline");
             }
         } else {
-
+            holder.status.setVisibility(View.GONE);
         }
-
     }
 
     @Override
