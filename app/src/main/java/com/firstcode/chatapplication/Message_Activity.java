@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,11 +39,11 @@ public class Message_Activity extends AppCompatActivity {
     private RecyclerView messageRecyclerView;
     private List<Chat> chatsList;
     private TextInputEditText messageText;
-    String userId;
+    private String userId;
     //firebase
-    FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
-   /* ValueEventListener seenListener;*/
+    private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference;
+    ValueEventListener SeenListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,6 @@ public class Message_Activity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
         messageRecyclerView.setLayoutManager(linearLayoutManager);
-
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.Toolbar);
@@ -91,12 +89,14 @@ public class Message_Activity extends AppCompatActivity {
                 assert users != null;
                 userName.setText(users.getUsername());
 
-                if(users.getImageUrl().equals("default")){
-                    userImage.setImageResource(R.mipmap.ic_launcher_round);
-                }else {
-                    Glide.with(Message_Activity.this).load(users.getImageUrl()).into(userImage);
+                if (isActivityValid()) { // Check if the activity is still valid before using Glide
+                    if (users.getImageUrl().equals("default")) {
+                        userImage.setImageResource(R.mipmap.ic_launcher_round);
+                    } else {
+                        Glide.with(Message_Activity.this).load(users.getImageUrl()).into(userImage);
+                    }
                 }
-                ReadMessages(firebaseUser.getUid(),userId,users.getImageUrl());
+                ReadMessages(firebaseUser.getUid(), userId, users.getImageUrl());
             }
 
             @Override
@@ -109,24 +109,53 @@ public class Message_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String message = messageText.getText().toString();
-                if(!message.equals("")){
-                    SendMessage(firebaseUser.getUid(),userId,message);
-                }else {
+                if (!message.equals("")) {
+                    SendMessage(firebaseUser.getUid(), userId, message);
+                } else {
                     Toast.makeText(Message_Activity.this, "Type Something User!!!", Toast.LENGTH_SHORT).show();
                 }
                 messageText.setText("");
             }
         });
-        // SeenMessage(userId);
+        SeenMessage(userId);
     }
+
+    private boolean isActivityValid() {
+        return !isFinishing() && !isDestroyed();
+    }
+
+    private void SeenMessage(final String userid){
+        databaseReference = FirebaseDatabase.getInstance().getReference("Chats");
+        SeenListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    assert chat != null;
+                    if(chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ){
+
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("isSeen", false);
+                        snapshot.getRef().updateChildren(hashMap);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void SendMessage(String sender, String receiver, String message) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("sender",sender);
-        hashMap.put("receiver",receiver);
-        hashMap.put("message",message);
-        /*hashMap.put("isseen",false);*/
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender", sender);
+        hashMap.put("receiver", receiver);
+        hashMap.put("message", message);
+        hashMap.put("isSeen", false);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -139,7 +168,7 @@ public class Message_Activity extends AppCompatActivity {
         chatReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
+                if (!snapshot.exists()) {
                     chatReference.child("id").setValue(userId);
                 }
             }
@@ -150,7 +179,8 @@ public class Message_Activity extends AppCompatActivity {
             }
         });
     }
-    private void ReadMessages(String myId,String userId,String imageUrl){
+
+    private void ReadMessages(String myId, String userId, String imageUrl) {
         chatsList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("Chats");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -158,17 +188,18 @@ public class Message_Activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chatsList.clear();
 
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Chat chat = dataSnapshot.getValue(Chat.class);
 
                     assert chat != null;
-                    if(chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
-                            chat.getReceiver().equals(userId) && chat.getSender().equals(myId)){
+                    if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
+                            chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
                         chatsList.add(chat);
                     }
-                    messageAdapter = new MessageAdapter(Message_Activity.this,chatsList,imageUrl);
-                    messageRecyclerView.setAdapter(messageAdapter);
                 }
+
+                messageAdapter = new MessageAdapter(Message_Activity.this, chatsList, imageUrl);
+                messageRecyclerView.setAdapter(messageAdapter);
             }
 
             @Override
@@ -176,54 +207,37 @@ public class Message_Activity extends AppCompatActivity {
 
             }
         });
-
     }
-   /* public void SeenMessage(final String UserId){
-        databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers");
-        seenListener = databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Chat chat = dataSnapshot.getValue(Chat.class);
 
-                    assert chat != null;
-                    if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(UserId)) {
-                        HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("isseen", true);
-                        snapshot.getRef().updateChildren(hashMap);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
-
-/*
-    public void CheckStatus(String status){
+    private void CheckStatus(String status) {
         databaseReference = FirebaseDatabase.getInstance().getReference("MyUsers")
                 .child(firebaseUser.getUid());
 
-        HashMap<String , Object> hashMap = new HashMap<>();
-        hashMap.put("status",status);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
 
         databaseReference.updateChildren(hashMap);
     }
-*/
 
-/*    @Override
+    @Override
     protected void onResume() {
         super.onResume();
-        CheckStatus("online");
+        CheckStatus("Online"); // Set user status to "Online" when the app is opened
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        databaseReference.removeEventListener(seenListener);
+        if (SeenListener != null) {
+            databaseReference.removeEventListener(SeenListener);
+        }
         CheckStatus("Offline");
-    }*/
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        CheckStatus("Online");
+    }
 }

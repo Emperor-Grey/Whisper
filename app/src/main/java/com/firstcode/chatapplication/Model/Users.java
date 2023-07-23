@@ -4,15 +4,17 @@ public class Users {
     private String Id;
     private String ImageUrl;
     private String Username;
+    private String Status;
 
     public Users() {
         //required for firebase
     }
 
-    public Users(String id, String imageUrl, String username) {
+    public Users(String id, String imageUrl, String username, String status) {
         Id = id;
         ImageUrl = imageUrl;
         Username = username;
+        Status = status;
     }
 
     public String getId() {
@@ -37,5 +39,13 @@ public class Users {
 
     public void setUsername(String username) {
         Username = username;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 }

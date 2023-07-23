@@ -73,7 +73,7 @@ public class Registration_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Registration_Activity.this, "Registration Completed", Toast.LENGTH_SHORT).show();
-                        /*  Intent i = new Intent(Registration_Activity.this,MainActivity.class);
+                            /*Intent i = new Intent(Registration_Activity.this,MainActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                             finish();*/
@@ -89,6 +89,7 @@ public class Registration_Activity extends AppCompatActivity {
                             hashMap.put("id",userId);
                             hashMap.put("username",Username);
                             hashMap.put("imageUrl","default");
+                            hashMap.put("Status","Offline");
 
                             //opening the Main Activity After Successful Registration
                             databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

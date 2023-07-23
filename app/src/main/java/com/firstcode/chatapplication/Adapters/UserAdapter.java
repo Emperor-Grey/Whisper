@@ -24,11 +24,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder> {
     private final Context context;
     private final List<Users> usersList;
+    private Boolean isChat;
 
     //Constructor
-    public UserAdapter(Context context, List<Users> usersList) {
+
+    public UserAdapter(Context context, List<Users> usersList, Boolean isChat) {
         this.context = context;
         this.usersList = usersList;
+        this.isChat = isChat;
     }
 
     @NonNull
@@ -57,6 +60,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
                 context.startActivity(i);
             }
         });
+
+        //Status Check
+        if (isChat) {
+            if(users.getStatus().equals("Online")){
+                holder.status.setText("Online");
+            }else {
+                holder.status.setText("Offline");
+            }
+        } else {
+
+        }
+
     }
 
     @Override
@@ -68,11 +83,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
     public static class userViewHolder extends RecyclerView.ViewHolder{
         private final TextView userName;
         private final CircleImageView userImage;
+        private final TextView status;
 
         public userViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.User_Name);
             userImage = itemView.findViewById(R.id.User_Image);
+            status = itemView.findViewById(R.id.Status);
         }
     }
 }
