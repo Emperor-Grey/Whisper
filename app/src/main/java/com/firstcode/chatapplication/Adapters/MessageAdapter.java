@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
     private final Context context;
@@ -49,7 +50,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Chat chat = chats.get(position);
-
         holder.message.setText(chat.getMessage());
         if (imageUrl.equals("default")) {
             holder.profileImage.setImageResource(R.mipmap.ic_launcher_round);
@@ -57,19 +57,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             Glide.with(context).load(imageUrl).into(holder.profileImage);
         }
 
-/*
-        if(position == chats.size() - 1){
-            String isSeen;
-            if(chat.getSeen()){
-                isSeen = "Seen";
-            }else {
-                isSeen = "Delivered";
+        if (position == chats.size() - 1) {
+            if(chat.isSeen()){
+                holder.messageSeen.setText("Seen");
+           }else {
+                holder.messageSeen.setText("Delivered");
             }
-            holder.messageSeen.setText(isSeen);
-        }else {
+        } else {
             holder.messageSeen.setVisibility(View.GONE);
         }
-*/
     }
 
     @Override
@@ -91,7 +87,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView message;
-        private final ImageView profileImage;
+        private final CircleImageView profileImage;
         private final TextView messageSeen;
 
         public ViewHolder(@NonNull View itemView) {

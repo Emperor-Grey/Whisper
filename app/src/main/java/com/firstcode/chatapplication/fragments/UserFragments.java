@@ -33,7 +33,6 @@ public class UserFragments extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +63,7 @@ public class UserFragments extends Fragment {
                     if(!users.getId().equals(firebaseUser.getUid())){
                         usersList.add(users);
                     }
-                    userAdapter = new UserAdapter(getContext(),usersList);
+                    userAdapter = new UserAdapter(getContext(),usersList, true);
                     UserRecyclerView.setAdapter(userAdapter);
                 }
             }

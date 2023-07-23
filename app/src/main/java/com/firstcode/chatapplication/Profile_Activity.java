@@ -180,7 +180,7 @@ public class Profile_Activity extends AppCompatActivity {
     // Method to navigate to Login_Activity and clear the back stack
     private void navigateToLoginActivity() {
         Intent intent = new Intent(Profile_Activity.this, Login_Activity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)/* & Intent.FLAG_ACTIVITY_CLEAR_TOP */);
         startActivity(intent);
         finish();
     }
