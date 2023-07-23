@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +19,7 @@ import com.bumptech.glide.Glide;
 import com.firstcode.chatapplication.Model.Users;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +33,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -126,7 +124,7 @@ public class Profile_Activity extends AppCompatActivity {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
-                        throw task.getException();
+                        throw Objects.requireNonNull(task.getException());
                     }
                     return storageReference1.getDownloadUrl();
                 }
@@ -150,12 +148,9 @@ public class Profile_Activity extends AppCompatActivity {
                         Toast.makeText(Profile_Activity.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(Profile_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(Profile_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             });
         } else {
             Toast.makeText(this, "No Image Selected", Toast.LENGTH_SHORT).show();

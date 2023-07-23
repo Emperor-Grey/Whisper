@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.firstcode.chatapplication.Message_Activity;
 import com.firstcode.chatapplication.Model.Users;
 import com.firstcode.chatapplication.R;
-import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -51,13 +49,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
             //Loading the image from the internet
             Glide.with(context).load(users.getImageUrl()).into(holder.userImage);
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, Message_Activity.class);
-                i.putExtra("userId",users.getId());
-                context.startActivity(i);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(context, Message_Activity.class);
+            i.putExtra("userId",users.getId());
+            context.startActivity(i);
         });
 
         //Status Check

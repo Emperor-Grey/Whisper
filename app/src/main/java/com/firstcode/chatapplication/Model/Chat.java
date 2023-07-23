@@ -6,7 +6,7 @@ public class Chat {
     private String message;
     private boolean isSeen;
 
-    public Chat(String sender, String receiver, String message,boolean isSeen) {
+    public Chat(String sender, String receiver, String message, boolean isSeen) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;

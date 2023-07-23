@@ -7,15 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class Login_Activity extends AppCompatActivity {
     private View decorView; //for full Screen
@@ -60,31 +58,25 @@ public class Login_Activity extends AppCompatActivity {
         });
 
         //Login Button Functionality
-        SignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String Username = Email.getText().toString();
-                String Password = password.getText().toString();
+        SignIn.setOnClickListener(view -> {
+            String Username = Objects.requireNonNull(Email.getText()).toString();
+            String Password = Objects.requireNonNull(password.getText()).toString();
 
-                //checking if it is empty
-                if(TextUtils.isEmpty(Username) || TextUtils.isEmpty(Password)){
-                    Toast.makeText(Login_Activity.this, "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
-                }else {
-                    auth.signInWithEmailAndPassword(Username,Password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        Intent i = new Intent(Login_Activity.this,MainActivity.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(i);
-                                        finish();
-                                    }else {
-                                        Toast.makeText(Login_Activity.this, "Login Failed Miserably", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
+            //checking if it is empty
+            if(TextUtils.isEmpty(Username) || TextUtils.isEmpty(Password)){
+                Toast.makeText(Login_Activity.this, "Please Fill All The Fields", Toast.LENGTH_SHORT).show();
+            }else {
+                auth.signInWithEmailAndPassword(Username,Password)
+                        .addOnCompleteListener(task -> {
+                            if(task.isSuccessful()){
+                                Intent i = new Intent(Login_Activity.this,MainActivity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
+                                finish();
+                            }else {
+                                Toast.makeText(Login_Activity.this, "Login Failed Miserably", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }

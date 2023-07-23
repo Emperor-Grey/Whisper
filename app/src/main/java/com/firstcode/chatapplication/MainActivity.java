@@ -2,6 +2,7 @@ package com.firstcode.chatapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Users users = snapshot.getValue(Users.class);
                 // You can perform any actions with user data here, if needed.
+                assert users != null;
+                Log.d("TAG",users.getUsername());
             }
 
             @Override

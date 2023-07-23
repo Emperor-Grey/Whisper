@@ -2,7 +2,6 @@ package com.firstcode.chatapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -70,14 +70,9 @@ public class Message_Activity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
         //firebase
@@ -108,17 +103,14 @@ public class Message_Activity extends AppCompatActivity {
             }
         });
 
-        sentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String message = messageText.getText().toString();
-                if (!message.equals("")) {
-                    SendMessage(firebaseUser.getUid(), userId, message);
-                } else {
-                    Toast.makeText(Message_Activity.this, "Type Something User!!!", Toast.LENGTH_SHORT).show();
-                }
-                messageText.setText("");
+        sentButton.setOnClickListener(view -> {
+            String message = Objects.requireNonNull(messageText.getText()).toString();
+            if (!message.equals("")) {
+                SendMessage(firebaseUser.getUid(), userId, message);
+            } else {
+                Toast.makeText(Message_Activity.this, "Type Something User!!!", Toast.LENGTH_SHORT).show();
             }
+            messageText.setText("");
         });
         SeenMessage(userId);
     }
