@@ -27,7 +27,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
     private final Boolean isChat;
 
     //Constructor
-
     public UserAdapter(Context context, List<Users> usersList, Boolean isChat) {
         this.context = context;
         this.usersList = usersList;
